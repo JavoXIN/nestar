@@ -4,7 +4,6 @@ import { MemberAuthType, MemberStatus, MemberType } from "../../enums/member.enu
 
 
 
-
 @ObjectType()
 export class Member {
     @Field(() => String)
@@ -27,16 +26,16 @@ export class Member {
 
     memberPassword?: string;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String, {nullable: true})
     memberFullName?: string;
 
     @Field(() => String)
     memberImage: string;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String, {nullable: true})
     memberAddress?: string;
 
-    @Field(() => String, { nullable: true })
+    @Field(() => String, {nullable: true})
     memberDesc?: string;
 
     @Field(() => Int)
@@ -72,7 +71,7 @@ export class Member {
     @Field(() => Int)
     memberBlocks: number;
 
-    @Field(() => Date, { nullable: true })
+    @Field(() => Date, {nullable: true})
     deletedAt?: Date;
 
     @Field(() => Date)
@@ -80,5 +79,4 @@ export class Member {
 
     @Field(() => Date)
     updatedAt: Date;
-
 }
