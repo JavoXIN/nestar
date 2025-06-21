@@ -39,3 +39,7 @@ export class AuthService {
         return member;
     }
 }
+
+//https://github.com/amurkhon/nestar/blob/develop/apps/nestar-api/src/schemas/Member.model.ts
+//https://docs.nestjs.com/interceptors
+//
