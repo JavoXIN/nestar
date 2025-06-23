@@ -26,3 +26,4 @@ const ViewSchema = new Schema(
 ViewSchema.index({ memberId: 1, viewRefId: 1 }, { unique: true });
 
 export default ViewSchema;
+ 
