@@ -9,6 +9,7 @@ import { ObjectId } from 'mongoose';
 import { MemberType } from '../../libs/enums/member.enum';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { RolesGuard } from '../auth/guards/roles.guard';
+import { MemberUpdate } from '../../libs/dto/member/member.update';
 
 
 @Resolver()
@@ -25,16 +26,6 @@ export class MemberResolver {
     public async login(@Args('input') input: LoginInput): Promise<Member> {
         console.log('Mutation: login');
         return this.memberService.login(input);
-    }
-
-    //Authenticated
-    @UseGuards(AuthGuard)
-    @Mutation(() => String)
-    public async updateMember(@AuthMember("_id") memberId: ObjectId): Promise<string> {
-        console.log('Mutation: updateMember');
-        //console.log(typeof memberId);
-        //console.log(memberId);
-        return this.memberService.updateMember();
     }
 
     @UseGuards(AuthGuard)
@@ -57,6 +48,18 @@ export class MemberResolver {
     }
 
 
+    //Authenticated
+    @UseGuards(AuthGuard)
+    @Mutation(() => Member)
+    public async updateMember(
+        @Args('input') input: MemberUpdate,
+        @AuthMember("_id") memberId: ObjectId
+    ): Promise<Member> {
+        console.log('Mutation: updateMember');
+        //console.log(typeof memberId);
+        delete input._id; 
+        return this.memberService.updateMember(memberId, input);
+    }
 
     @Query(() => String)
     public async getMember(): Promise<string> {
@@ -79,7 +82,7 @@ export class MemberResolver {
         console.log('Mutation: updateMemberByAdmin');
         return this.memberService.updateMemberByAdmin();
     }
-
-
 }
 
+
+//10:36
