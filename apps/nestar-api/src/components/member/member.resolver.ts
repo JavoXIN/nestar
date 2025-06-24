@@ -152,7 +152,7 @@ export class MemberResolver {
     ): Promise<string[]> {
         console.log('Mutation: imagesUploader');
 
-        const uploadedImages = [];
+        const uploadedImages: string[] = []; //aslida "const uploadedImages = []" lekin "uploadedImages[index] = url;" xato va "never" qiymatini olmasligi sabab qizil korsatdi, shu sabab string[] qoshdim 
         const promisedList = files.map(async (img: Promise<FileUpload>, index: number): Promise<Promise<void>> => {
             try {
                 const { filename, mimetype, encoding, createReadStream } = await img;
