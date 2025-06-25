@@ -76,7 +76,7 @@ export class MemberService {
         return result;
     }
 
-    public async getMember(memberId: ObjectId, targetId: ObjectId): Promise<Member> {
+    public async getMember(memberId: ObjectId | null, targetId: ObjectId): Promise<Member> { //108 dars 11:37 daqiqa(2025.06.25) aslida getMember(memberId: ObjectId, targetId..) edi lekin property.service.ts da targetProperty.memberData = await this.memberService.getMember(null, targetProperty.memberId); null xato chiqaverganiga ObjectId | null qoshdim
         const search: T = {
             _id: targetId,
             memberStatus: {

@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from "@nestjs/graphql";
 import { ObjectId } from "mongoose";
 import { MemberAuthType, MemberStatus, MemberType } from "../../enums/member.enum";
 import { PropertyLocation, PropertyStatus, PropertyType } from "../../enums/property.enum";
-
+import { Member } from "../member/member";
 
 @ObjectType()
 export class Property {
@@ -77,5 +77,11 @@ export class Property {
 
     @Field(() => Date)
     updatedAt: Date;
+
+
+    // from aggregationAdd commentMore actions
+
+    @Field(() => Member, {nullable: true})
+    memberData?: Member;
 
 }
