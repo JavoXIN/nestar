@@ -108,4 +108,18 @@ export class CommentService {
         if (!result.length) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
         return result[0];
     }
+
+
+
+    public async removeCommentByAdmin(input: ObjectId): Promise<Comment> {
+        //const search: T = { _id: commentId, propertyStatus: CommentStatus.DELETE };
+        //console.log("result: ",search);
+        const result = await this.commentModel.findByIdAndDelete(input);
+        if(!result) throw new InternalServerErrorException(Message.REMOVE_FAILED);
+
+        return result;
+    }
+
+
+
 }
