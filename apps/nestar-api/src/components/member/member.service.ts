@@ -109,8 +109,24 @@ export class MemberService {
                 targetMember.memberViews++;
             }
         }
+
+
+        //meLiked
+        const likeInput = {
+                memberId: memberId,
+                likeRefId: targetId,
+                likeGroup: LikeGroup.MEMBER
+            };
+            targetMember.meLiked = await this.likeService.checkLikeExistence(likeInput);
+        //meFollowed
         return targetMember;
+
+
     }
+
+
+
+
 
     public async getAgents(memberId: ObjectId, input: AgentsInquiry): Promise<Members> {
         const { text } = input.search;
@@ -167,7 +183,7 @@ export class MemberService {
 
 
 
-    
+
 
 
     public async getAllMembersByAdmin(input: MembersInquiry): Promise<Members> {
